@@ -1,0 +1,7 @@
+rapidfuzz
+pandas
+numpy
+torch
+scikit-learn
+torchvision
+matplotlib
