@@ -78,7 +78,7 @@ def main():
     print(f"Number of test images: {len(test_dataset)}")
 
 
-    models.train_baseline(train_loader, val_loader)
+    models.train_primary(train_loader, val_loader)
     
 
 

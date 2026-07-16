@@ -278,7 +278,7 @@ def train_baseline(train_loader, val_loader):
 
 
 def train_primary(train_loader, val_loader):
-    NUM_EPOCHS = 50
+    NUM_EPOCHS = 10
 
     train_loss_array = np.zeros(NUM_EPOCHS)
     train_accuracy_array = np.zeros(NUM_EPOCHS)
