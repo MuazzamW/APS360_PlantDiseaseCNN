@@ -5,28 +5,16 @@ import hashlib
 import shutil
 
 import pandas as pd
-from rapidfuzz import process, fuzz
 from sklearn.model_selection import train_test_split
-
-import torch
-from torch.utils.data import DataLoader
-from torchvision import datasets, transforms
 
 from class_mapping import CLASS_MAPPING1
 
-
-# --------------------------------------------------
-# Paths
-# --------------------------------------------------
 
 plantvillage_root = Path("PlantVillage_Dataset")
 plantdoc_root = Path("PlantDoc_Dataset")
 output_root = Path("Combined_Dataset")
 
 
-# --------------------------------------------------
-# Utility functions
-# --------------------------------------------------
 
 IMAGE_EXTENSIONS = {
     ".jpg",
@@ -119,10 +107,6 @@ def unique_filename(row):
     return f"{row['dataset']}_{short_hash}_{source_path.name}"
 
 
-# --------------------------------------------------
-# Inspect classes
-# --------------------------------------------------
-
 pv_classes = get_class_names(
     plantvillage_root,
     ["train", "val"]
@@ -141,10 +125,6 @@ print("\nPlantDoc classes:")
 for class_name in pd_classes:
     print(class_name)
 
-
-# --------------------------------------------------
-# Collect matching images using CLASS_MAPPING1
-# --------------------------------------------------
 
 records = []
 
@@ -200,11 +180,6 @@ print(df["dataset"].value_counts())
 df.to_csv("combined_dataset_manifest_before_split.csv", index=False)
 
 
-# --------------------------------------------------
-# Approach A:
-# Keep PlantDoc test as final test set
-# --------------------------------------------------
-
 test_df = df[
     (df["dataset"] == "plantdoc")
     & (df["original_split"] == "test")
@@ -248,10 +223,6 @@ final_df = pd.concat(
 )
 
 
-# --------------------------------------------------
-# Create combined folder structure
-# --------------------------------------------------
-
 if output_root.exists():
     print(f"\nWarning: {output_root} already exists. Files may be overwritten or duplicated.")
 
@@ -276,10 +247,6 @@ for _, row in final_df.iterrows():
 
     shutil.copy2(source_path, destination_path)
 
-
-# --------------------------------------------------
-# Save metadata
-# --------------------------------------------------
 
 final_df.to_csv(
     output_root / "dataset_manifest.csv",
@@ -308,9 +275,6 @@ print(
 print(f"\nDataset created at: {output_root.resolve()}")
 
 
-# --------------------------------------------------
-# Create PyTorch DataLoaders
-# --------------------------------------------------
 
 
 

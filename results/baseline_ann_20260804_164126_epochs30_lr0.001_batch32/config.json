@@ -1,0 +1,14 @@
+{
+    "model_name": "baseline_ann",
+    "model_class": "BaselineANN",
+    "num_epochs": 30,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "criterion": "CrossEntropyLoss",
+    "train_size": 31345,
+    "val_size": 7837,
+    "batch_size": 32,
+    "device_available": "cpu",
+    "img_size": 224,
+    "num_classes": 27
+}
