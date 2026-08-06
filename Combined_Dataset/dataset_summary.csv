@@ -1,137 +1,163 @@
 split,class,dataset,image_count
 test,apple healthy,plantdoc,9
+test,apple healthy,plantvillage,130
 test,apple rust,plantdoc,10
+test,apple rust,plantvillage,144
 test,apple scab,plantdoc,10
+test,apple scab,plantvillage,144
 test,blueberry healthy,plantdoc,11
+test,blueberry healthy,plantvillage,159
 test,cherry healthy,plantdoc,10
+test,cherry healthy,plantvillage,144
 test,corn leaf blight,plantdoc,12
+test,corn leaf blight,plantvillage,173
 test,corn maize cercospora spot gray spot,plantdoc,4
+test,corn maize cercospora spot gray spot,plantvillage,58
 test,corn maize common rust,plantdoc,10
+test,corn maize common rust,plantvillage,144
 test,grape black rot,plantdoc,8
+test,grape black rot,plantvillage,116
 test,grape healthy,plantdoc,12
+test,grape healthy,plantvillage,173
 test,peach healthy,plantdoc,9
+test,peach healthy,plantvillage,130
 test,pepper bell bacterial spot,plantdoc,9
+test,pepper bell bacterial spot,plantvillage,130
 test,pepper bell healthy,plantdoc,8
+test,pepper bell healthy,plantvillage,116
 test,potato early blight,plantdoc,8
+test,potato early blight,plantvillage,116
 test,potato late blight,plantdoc,8
+test,potato late blight,plantvillage,116
 test,raspberry healthy,plantdoc,7
+test,raspberry healthy,plantvillage,101
 test,soybean healthy,plantdoc,8
+test,soybean healthy,plantvillage,116
 test,squash powdery mildew,plantdoc,6
+test,squash powdery mildew,plantvillage,86
 test,strawberry healthy,plantdoc,8
+test,strawberry healthy,plantvillage,116
 test,tomato bacterial spot,plantdoc,9
+test,tomato bacterial spot,plantvillage,130
 test,tomato early blight,plantdoc,9
+test,tomato early blight,plantvillage,130
 test,tomato healthy,plantdoc,8
+test,tomato healthy,plantvillage,116
 test,tomato late blight,plantdoc,10
+test,tomato late blight,plantvillage,144
 test,tomato mold,plantdoc,6
+test,tomato mold,plantvillage,87
 test,tomato mosaic virus,plantdoc,10
+test,tomato mosaic virus,plantvillage,144
 test,tomato septoria spot,plantdoc,11
+test,tomato septoria spot,plantvillage,159
 test,tomato yellow curl virus,plantdoc,6
-train,apple healthy,plantdoc,69
-train,apple healthy,plantvillage,1312
-train,apple rust,plantdoc,64
-train,apple rust,plantvillage,219
-train,apple scab,plantdoc,61
-train,apple scab,plantvillage,505
-train,blueberry healthy,plantdoc,85
-train,blueberry healthy,plantvillage,1201
-train,cherry healthy,plantdoc,38
-train,cherry healthy,plantvillage,683
-train,corn leaf blight,plantdoc,143
-train,corn leaf blight,plantvillage,789
+test,tomato yellow curl virus,plantvillage,87
+train,apple healthy,plantdoc,68
+train,apple healthy,plantvillage,1210
+train,apple rust,plantdoc,60
+train,apple rust,plantvillage,108
+train,apple scab,plantdoc,58
+train,apple scab,plantvillage,392
+train,blueberry healthy,plantdoc,83
+train,blueberry healthy,plantvillage,1075
+train,cherry healthy,plantdoc,39
+train,cherry healthy,plantvillage,567
+train,corn leaf blight,plantdoc,141
+train,corn leaf blight,plantvillage,653
 train,corn maize cercospora spot gray spot,plantdoc,51
-train,corn maize cercospora spot gray spot,plantvillage,411
-train,corn maize common rust,plantdoc,82
-train,corn maize common rust,plantvillage,956
-train,grape black rot,plantdoc,47
-train,grape black rot,plantvillage,942
-train,grape healthy,plantdoc,47
-train,grape healthy,plantvillage,337
-train,peach healthy,plantdoc,73
-train,peach healthy,plantvillage,297
-train,pepper bell bacterial spot,plantdoc,53
-train,pepper bell bacterial spot,plantvillage,794
-train,pepper bell healthy,plantdoc,38
-train,pepper bell healthy,plantvillage,1187
-train,potato early blight,plantdoc,91
-train,potato early blight,plantvillage,796
-train,potato late blight,plantdoc,73
-train,potato late blight,plantvillage,805
-train,raspberry healthy,plantdoc,89
-train,raspberry healthy,plantvillage,295
-train,soybean healthy,plantdoc,48
-train,soybean healthy,plantvillage,4069
-train,squash powdery mildew,plantdoc,92
-train,squash powdery mildew,plantvillage,1474
-train,strawberry healthy,plantdoc,67
-train,strawberry healthy,plantvillage,368
-train,tomato bacterial spot,plantdoc,78
-train,tomato bacterial spot,plantvillage,1702
-train,tomato early blight,plantdoc,56
-train,tomato early blight,plantvillage,803
-train,tomato healthy,plantdoc,42
-train,tomato healthy,plantvillage,1274
-train,tomato late blight,plantdoc,86
-train,tomato late blight,plantvillage,1522
-train,tomato mold,plantdoc,66
-train,tomato mold,plantvillage,764
-train,tomato mosaic virus,plantdoc,37
-train,tomato mosaic virus,plantvillage,297
-train,tomato septoria spot,plantdoc,109
-train,tomato septoria spot,plantvillage,1417
-train,tomato yellow curl virus,plantdoc,57
-train,tomato yellow curl virus,plantvillage,4284
-val,apple healthy,plantdoc,13
-val,apple healthy,plantvillage,333
-val,apple rust,plantdoc,15
-val,apple rust,plantvillage,56
-val,apple scab,plantdoc,16
-val,apple scab,plantvillage,125
-val,blueberry healthy,plantdoc,20
-val,blueberry healthy,plantvillage,301
-val,cherry healthy,plantdoc,9
-val,cherry healthy,plantvillage,171
-val,corn leaf blight,plantdoc,37
-val,corn leaf blight,plantvillage,196
+train,corn maize cercospora spot gray spot,plantvillage,364
+train,corn maize common rust,plantdoc,88
+train,corn maize common rust,plantvillage,835
+train,grape black rot,plantdoc,45
+train,grape black rot,plantvillage,851
+train,grape healthy,plantdoc,46
+train,grape healthy,plantvillage,200
+train,peach healthy,plantdoc,77
+train,peach healthy,plantvillage,189
+train,pepper bell bacterial spot,plantdoc,47
+train,pepper bell bacterial spot,plantvillage,696
+train,pepper bell healthy,plantdoc,49
+train,pepper bell healthy,plantvillage,1083
+train,potato early blight,plantdoc,84
+train,potato early blight,plantvillage,710
+train,potato late blight,plantdoc,82
+train,potato late blight,plantvillage,703
+train,raspberry healthy,plantdoc,87
+train,raspberry healthy,plantvillage,216
+train,soybean healthy,plantdoc,44
+train,soybean healthy,plantvillage,3981
+train,squash powdery mildew,plantdoc,97
+train,squash powdery mildew,plantvillage,1401
+train,strawberry healthy,plantdoc,72
+train,strawberry healthy,plantvillage,270
+train,tomato bacterial spot,plantdoc,74
+train,tomato bacterial spot,plantvillage,1602
+train,tomato early blight,plantdoc,62
+train,tomato early blight,plantvillage,693
+train,tomato healthy,plantdoc,45
+train,tomato healthy,plantvillage,1178
+train,tomato late blight,plantdoc,81
+train,tomato late blight,plantvillage,1412
+train,tomato mold,plantdoc,68
+train,tomato mold,plantvillage,692
+train,tomato mosaic virus,plantdoc,33
+train,tomato mosaic virus,plantvillage,186
+train,tomato septoria spot,plantdoc,101
+train,tomato septoria spot,plantvillage,1298
+train,tomato yellow curl virus,plantdoc,59
+train,tomato yellow curl virus,plantvillage,4212
+val,apple healthy,plantdoc,14
+val,apple healthy,plantvillage,305
+val,apple rust,plantdoc,19
+val,apple rust,plantvillage,23
+val,apple scab,plantdoc,19
+val,apple scab,plantvillage,94
+val,blueberry healthy,plantdoc,22
+val,blueberry healthy,plantvillage,268
+val,cherry healthy,plantdoc,8
+val,cherry healthy,plantvillage,143
+val,corn leaf blight,plantdoc,39
+val,corn leaf blight,plantvillage,159
 val,corn maize cercospora spot gray spot,plantdoc,13
-val,corn maize cercospora spot gray spot,plantvillage,102
-val,corn maize common rust,plantdoc,24
-val,corn maize common rust,plantvillage,236
-val,grape black rot,plantdoc,9
-val,grape black rot,plantvillage,238
-val,grape healthy,plantdoc,10
-val,grape healthy,plantvillage,86
-val,peach healthy,plantdoc,30
-val,peach healthy,plantvillage,63
-val,pepper bell bacterial spot,plantdoc,9
-val,pepper bell bacterial spot,plantvillage,203
-val,pepper bell healthy,plantdoc,15
-val,pepper bell healthy,plantvillage,291
-val,potato early blight,plantdoc,18
-val,potato early blight,plantvillage,204
-val,potato late blight,plantdoc,24
-val,potato late blight,plantvillage,195
-val,raspberry healthy,plantdoc,20
-val,raspberry healthy,plantvillage,76
-val,soybean healthy,plantdoc,9
-val,soybean healthy,plantvillage,1021
-val,squash powdery mildew,plantdoc,31
-val,squash powdery mildew,plantvillage,361
-val,strawberry healthy,plantdoc,21
-val,strawberry healthy,plantvillage,88
-val,tomato bacterial spot,plantdoc,20
-val,tomato bacterial spot,plantvillage,425
-val,tomato early blight,plantdoc,18
-val,tomato early blight,plantvillage,197
-val,tomato healthy,plantdoc,12
-val,tomato healthy,plantvillage,317
-val,tomato late blight,plantdoc,15
-val,tomato late blight,plantvillage,387
-val,tomato mold,plantdoc,19
-val,tomato mold,plantvillage,188
-val,tomato mosaic virus,plantdoc,7
-val,tomato mosaic virus,plantvillage,76
-val,tomato septoria spot,plantdoc,28
-val,tomato septoria spot,plantvillage,354
-val,tomato yellow curl virus,plantdoc,12
-val,tomato yellow curl virus,plantvillage,1073
-,,,39418
+val,corn maize cercospora spot gray spot,plantvillage,91
+val,corn maize common rust,plantdoc,18
+val,corn maize common rust,plantvillage,213
+val,grape black rot,plantdoc,11
+val,grape black rot,plantvillage,213
+val,grape healthy,plantdoc,11
+val,grape healthy,plantvillage,50
+val,peach healthy,plantdoc,26
+val,peach healthy,plantvillage,41
+val,pepper bell bacterial spot,plantdoc,15
+val,pepper bell bacterial spot,plantvillage,171
+val,pepper bell healthy,plantdoc,4
+val,pepper bell healthy,plantvillage,279
+val,potato early blight,plantdoc,25
+val,potato early blight,plantvillage,174
+val,potato late blight,plantdoc,15
+val,potato late blight,plantvillage,181
+val,raspberry healthy,plantdoc,22
+val,raspberry healthy,plantvillage,54
+val,soybean healthy,plantdoc,13
+val,soybean healthy,plantvillage,993
+val,squash powdery mildew,plantdoc,26
+val,squash powdery mildew,plantvillage,348
+val,strawberry healthy,plantdoc,16
+val,strawberry healthy,plantvillage,70
+val,tomato bacterial spot,plantdoc,24
+val,tomato bacterial spot,plantvillage,395
+val,tomato early blight,plantdoc,12
+val,tomato early blight,plantvillage,177
+val,tomato healthy,plantdoc,9
+val,tomato healthy,plantvillage,297
+val,tomato late blight,plantdoc,20
+val,tomato late blight,plantvillage,353
+val,tomato mold,plantdoc,17
+val,tomato mold,plantvillage,173
+val,tomato mosaic virus,plantdoc,11
+val,tomato mosaic virus,plantvillage,43
+val,tomato septoria spot,plantdoc,36
+val,tomato septoria spot,plantvillage,314
+val,tomato yellow curl virus,plantdoc,10
+val,tomato yellow curl virus,plantvillage,1058

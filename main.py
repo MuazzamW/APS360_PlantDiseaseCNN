@@ -130,9 +130,9 @@ def main():
         "results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32"
     )
 
-    models.per_class_accuracy(primaryCNN,test_loader,device)
+    #models.per_class_accuracy(primaryCNN,test_loader,device)
     
-    #models.test(primaryCNN, test_loader=test_loader, save_results=True, run_dir=run_dir)
+    models.test(primaryCNN, test_loader=test_loader, save_results=True, run_dir=run_dir)
     
     #models.test(transferResults, test_loader=test_loader,save_results=True, run_dir=run_dir)
     
