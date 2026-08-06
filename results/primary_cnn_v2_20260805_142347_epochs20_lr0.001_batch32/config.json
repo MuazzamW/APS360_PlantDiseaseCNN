@@ -1,0 +1,30 @@
+{
+    "model_name": "primary_cnn_v2",
+    "model_class": "PrimaryCNN",
+    "num_epochs": 20,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "criterion": "CrossEntropyLoss",
+    "train_size": 31345,
+    "val_size": 7837,
+    "batch_size": 32,
+    "device_available": "cpu",
+    "img_size": 224,
+    "num_classes": 27,
+    "model_config": {
+        "num_classes": 27,
+        "img_size": 224,
+        "conv_filters": [
+            32,
+            64,
+            128,
+            256
+        ],
+        "kernel_size": 3,
+        "padding": 1,
+        "batch_norm": true,
+        "global_avg_pool": true,
+        "dropout": 0.4,
+        "fc_hidden": 128
+    }
+}

@@ -17,9 +17,16 @@ def main():
     
 
     train_transform = transforms.Compose([
-        transforms.Resize((IMG_SIZE, IMG_SIZE)),
+        transforms.RandomResizedCrop(224, scale=(0.6, 1.0)),
         transforms.RandomHorizontalFlip(),
-        transforms.RandomRotation(15),
+        transforms.RandomRotation(25),
+        transforms.ColorJitter(
+            brightness=0.3,
+            contrast=0.3,
+            saturation=0.3,
+            hue=0.05
+        ),
+        transforms.GaussianBlur(kernel_size=3),
         transforms.ToTensor(),
         transforms.Normalize(
             mean=[0.485, 0.456, 0.406],
@@ -82,6 +89,7 @@ def main():
     NUM_CLASSES = len(train_loader.dataset.classes)
     print(f"Number of classes: {NUM_CLASSES}")
 
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
     baselineANN = models.BaselineANN(NUM_CLASSES, IMG_SIZE)
     primaryCNN = models.PrimaryCNN(NUM_CLASSES, IMG_SIZE)
@@ -90,16 +98,16 @@ def main():
             freeze_backbone=True
     )
 
-    transferResults = models.train(
-        model=transfer_model,
-        train_loader=train_loader,
-        val_loader=val_loader,
-        num_epochs=20,
-        learning_rate=0.001,
-        results_root=RESULTS_ROOT,
-        save_results=False,
-        show_plots=True
-    )
+    # transferResults = models.train(
+    #     model=transfer_model,
+    #     train_loader=train_loader,
+    #     val_loader=val_loader,
+    #     num_epochs=1,
+    #     learning_rate=0.001,
+    #     results_root=RESULTS_ROOT,
+    #     save_results=True,
+    #     show_plots=True
+    # )
 
     # baselineResults = models.train(baselineANN, 
     #                                train_loader=train_loader, 
@@ -109,8 +117,22 @@ def main():
     #                                results_root=RESULTS_ROOT,
     #                                save_results=True,
     #                                show_plots=True)
+
+    primaryCNN.load_state_dict(
+        torch.load("results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32/model_state_dict.pt",
+                   map_location=device)
+    )
+
+    primaryCNN = primaryCNN.to(device)
+    primaryCNN.eval()
+
+    run_dir = Path(
+        "results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32"
+    )
+
+    models.per_class_accuracy(primaryCNN,test_loader,device)
     
-    run_dir = transferResults[-1]
+    #models.test(primaryCNN, test_loader=test_loader, save_results=True, run_dir=run_dir)
     
     #models.test(transferResults, test_loader=test_loader,save_results=True, run_dir=run_dir)
     

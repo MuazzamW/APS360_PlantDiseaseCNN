@@ -52,71 +52,60 @@ class PrimaryCNN(nn.Module):
     def __init__(self, num_classes=27, img_size=224):
         super(PrimaryCNN, self).__init__()
 
-        self.name = "primary_cnn"
+        self.name = "primary_cnn_v2"
 
-        self.conv1 = nn.Conv2d(
-            in_channels=3,
-            out_channels=32,
-            kernel_size=3,
-            padding=1
+        self.features = nn.Sequential(
+            # Block 1: 3 x 224 x 224 -> 32 x 112 x 112
+            nn.Conv2d(3, 32, kernel_size=3, padding=1),
+            nn.BatchNorm2d(32),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+
+            # Block 2: 32 x 112 x 112 -> 64 x 56 x 56
+            nn.Conv2d(32, 64, kernel_size=3, padding=1),
+            nn.BatchNorm2d(64),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+
+            # Block 3: 64 x 56 x 56 -> 128 x 28 x 28
+            nn.Conv2d(64, 128, kernel_size=3, padding=1),
+            nn.BatchNorm2d(128),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2),
+
+            # Block 4: 128 x 28 x 28 -> 256 x 14 x 14
+            nn.Conv2d(128, 256, kernel_size=3, padding=1),
+            nn.BatchNorm2d(256),
+            nn.ReLU(),
+            nn.MaxPool2d(2, 2)
         )
 
-        self.conv2 = nn.Conv2d(
-            in_channels=32,
-            out_channels=64,
-            kernel_size=3,
-            padding=1
+        self.global_pool = nn.AdaptiveAvgPool2d((1, 1))
+
+        self.classifier = nn.Sequential(
+            nn.Flatten(),
+            nn.Linear(256, 128),
+            nn.ReLU(),
+            nn.Dropout(0.4),
+            nn.Linear(128, num_classes)
         )
-
-        self.conv3 = nn.Conv2d(
-            in_channels=64,
-            out_channels=128,
-            kernel_size=3,
-            padding=1
-        )
-
-        self.pool = nn.MaxPool2d(2, 2)
-
-        self.dropout = nn.Dropout(0.3)
-
-        flattened_size = self._get_flattened_size(img_size)
-
-        self.fc1 = nn.Linear(flattened_size, 256)
-        self.fc2 = nn.Linear(256, num_classes)
 
         self.config = {
             "num_classes": num_classes,
             "img_size": img_size,
-            "conv_filters": [32, 64, 128],
+            "conv_filters": [32, 64, 128, 256],
             "kernel_size": 3,
             "padding": 1,
-            "dropout": 0.3,
-            "fc_hidden": 256
+            "batch_norm": True,
+            "global_avg_pool": True,
+            "dropout": 0.4,
+            "fc_hidden": 128
         }
 
-    def _get_flattened_size(self, img_size):
-        with torch.no_grad():
-            dummy = torch.zeros(1, 3, img_size, img_size)
-
-            x = self.pool(F.relu(self.conv1(dummy)))
-            x = self.pool(F.relu(self.conv2(x)))
-            x = self.pool(F.relu(self.conv3(x)))
-
-            x = x.view(x.size(0), -1)
-
-            return x.shape[1]
-
     def forward(self, x):
-        x = self.pool(F.relu(self.conv1(x)))
-        x = self.pool(F.relu(self.conv2(x)))
-        x = self.pool(F.relu(self.conv3(x)))
-
-        x = x.view(x.size(0), -1)
-
-        x = F.relu(self.fc1(x))
-        x = self.dropout(x)
-
-        x = self.fc2(x)
+        x = self.features(x)
+        x = self.global_pool(x)
+        x = self.classifier(x)
 
         return x
     
@@ -409,6 +398,8 @@ def train(
 
     class_weights = get_class_weights(train_loader.dataset).to(device)
 
+    print(class_weights)
+
     #weighted criterion so that mistakes on underrepresented classes count more
     #tries to offset the imbalance created by having more plant village images than plant doc
     criterion = nn.CrossEntropyLoss(
@@ -553,3 +544,39 @@ def test(model, test_loader, save_results, run_dir):
                 json.dump(test_metrics, f, indent=4)
     
         
+def per_class_accuracy(model, data_loader, device):
+    model.eval()
+
+    correct_per_class = {}
+    total_per_class = {}
+
+    idx_to_class = {
+        idx: class_name
+        for class_name, idx in data_loader.dataset.class_to_idx.items()
+    }
+
+    with torch.no_grad():
+        for images, labels in data_loader:
+            images = images.to(device)
+            labels = labels.to(device)
+
+            outputs = model(images)
+            preds = outputs.argmax(dim=1)
+
+            for label, pred in zip(labels, preds):
+                label_idx = label.item()
+                pred_idx = pred.item()
+
+                class_name = idx_to_class[label_idx]
+
+                total_per_class[class_name] = total_per_class.get(class_name, 0) + 1
+
+                if label_idx == pred_idx:
+                    correct_per_class[class_name] = correct_per_class.get(class_name, 0) + 1
+
+    for class_name in sorted(total_per_class.keys()):
+        correct = correct_per_class.get(class_name, 0)
+        total = total_per_class[class_name]
+        acc = correct / total
+
+        print(f"{class_name:40s} {acc:.4f} ({correct}/{total})")
