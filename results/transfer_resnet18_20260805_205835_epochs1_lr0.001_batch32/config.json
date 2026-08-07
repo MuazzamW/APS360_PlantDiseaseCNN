@@ -1,0 +1,21 @@
+{
+    "model_name": "transfer_resnet18",
+    "model_class": "TransferResNet18",
+    "num_epochs": 1,
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "criterion": "CrossEntropyLoss",
+    "train_size": 28618,
+    "val_size": 7155,
+    "batch_size": 32,
+    "device_available": "cpu",
+    "img_size": 224,
+    "num_classes": 27,
+    "model_config": {
+        "num_classes": 27,
+        "backbone": "resnet18",
+        "pretrained": true,
+        "freeze_backbone": true,
+        "final_layer": "Linear(512, 27)"
+    }
+}

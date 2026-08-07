@@ -102,7 +102,7 @@ def main():
     #     model=transfer_model,
     #     train_loader=train_loader,
     #     val_loader=val_loader,
-    #     num_epochs=1,
+    #     num_epochs=20,
     #     learning_rate=0.001,
     #     results_root=RESULTS_ROOT,
     #     save_results=True,
@@ -118,23 +118,26 @@ def main():
     #                                save_results=True,
     #                                show_plots=True)
 
-    primaryCNN.load_state_dict(
-        torch.load("results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32/model_state_dict.pt",
-                   map_location=device)
+    # primaryCNN.load_state_dict(
+    #     torch.load("results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32/model_state_dict.pt",
+    #                map_location=device)
+    # )
+
+    transfer_model.load_state_dict(
+        torch.load("results/transfer_resnet18_20260805_210956_epochs20_lr0.001_batch32/model_state_dict.pt")
     )
 
-    primaryCNN = primaryCNN.to(device)
-    primaryCNN.eval()
+    # primaryCNN = primaryCNN.to(device)
+    # primaryCNN.eval()
 
-    run_dir = Path(
-        "results/primary_cnn_v2_20260805_085409_epochs20_lr0.001_batch32"
-    )
+    transfer_model = transfer_model.to(device)
+    transfer_model.eval()
 
-    #models.per_class_accuracy(primaryCNN,test_loader,device)
+    run_dir = Path("results/transfer_resnet18_20260805_210956_epochs20_lr0.001_batch32/")
     
-    models.test(primaryCNN, test_loader=test_loader, save_results=True, run_dir=run_dir)
+    #models.test(primaryCNN, test_loader=test_loader, save_results=True, run_dir=run_dir)
     
-    #models.test(transferResults, test_loader=test_loader,save_results=True, run_dir=run_dir)
+    models.test(transfer_model, test_loader=test_loader,save_results=True, run_dir=run_dir)
     
 
 
